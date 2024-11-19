@@ -25,7 +25,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private AlunoAdapter alunoAdapter;
     private AlunoAPI alunoAPI;
     private List<Aluno> alunoList = new ArrayList<>();
-    private Button btnCadastro;
+    private Button btnCadastro, btnUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
 
         btnCadastro = findViewById(R.id.buttonCadastro);
+        btnUpdate = findViewById(R.id.buttonUpdate);
 
         btnCadastro.setOnClickListener(v -> {
             Intent intent = new Intent(ListaAlunosActivity.this, Cadastro.class);
             startActivity(intent);
         });
+
+        btnUpdate.setOnClickListener(v -> {
+            fetchStudentData();
+        });
+
         recyclerViewAlunos = findViewById(R.id.recyclerViewAlunos);
         recyclerViewAlunos.setLayoutManager(new LinearLayoutManager(this));
 
